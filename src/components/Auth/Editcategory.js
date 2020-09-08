@@ -29,7 +29,7 @@ const Editcategory =() =>{
              
            var status= await axios.put(`http://localhost:5000/productcategory/${Id}`,category);
            console.log(status);
-            history.push("/"); 
+            history.push("/category"); 
         };
 
         const loadCategory= async ()=>{
@@ -42,7 +42,7 @@ const Editcategory =() =>{
 
         <div className="container">
         <div className="w-75 mx-auto shadow p-5">
-          <h2 className="text-center mb-4">Edit Category</h2>
+        <h3 className="text-left mb-4">Edit Category</h3>
           <form  onSubmit={e=>onSubmit(e)}>
             
             <div className="form-group">
@@ -53,6 +53,8 @@ const Editcategory =() =>{
                 name="categoryName"
                 value={categoryName}
                 onChange={e => onInputChange(e)}
+                required
+
               />
             </div>
            

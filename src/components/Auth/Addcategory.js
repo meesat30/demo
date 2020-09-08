@@ -21,14 +21,14 @@ const Addcategory = () => {
     const onSubmit= async e =>{
         e.preventDefault();
         await axios.post("http://localhost:5000/productcategory",category);
-        history.push("/"); 
+        history.push("/category"); 
     };
 
     return (
         
         <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Add Category</h2>
+        <h3 className="text-left mb-4">Add Category</h3>
         <form  onSubmit={e=>onSubmit(e)}>
           
           <div className="form-group">
@@ -39,6 +39,7 @@ const Addcategory = () => {
               name="categoryName"
               value={categoryName}
               onChange={e => onInputChange(e)}
+              required
             />
           </div>
          

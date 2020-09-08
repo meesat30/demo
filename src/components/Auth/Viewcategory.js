@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHandPointLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Viewcategory = () => {
   const [category, setCategory] = useState({
@@ -19,14 +21,19 @@ const Viewcategory = () => {
   };
   return (
     <div className="container py-4">
-      <Link className="btn btn-primary" to="/">
-        back to Home
+      <div className="text-left">
+        <Link className="btn" to="/category">
+          <FontAwesomeIcon icon={faHandPointLeft} /> Back to Category
       </Link>
-      <h1 className="display-4">Category Id: {Id}</h1>
-      <hr />
-      <ul className="list-group w-50">
-        <li className="list-group-item">Categoy Name: {category.categoryName}</li>
-      </ul>
+      </div>
+
+      <div class="border row">
+        <div class="border font-weight-bold col"><h3>Category Id: {Id}</h3></div>
+      </div>
+      <div class="border row">
+        <div class="border font-weight-bold col-4">Categoy Name:</div>
+        <div class="border col text-left">{category.categoryName}</div>
+      </div>
     </div>
   );
 };

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHandPointLeft } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const Viewproduct = () => {
   const [product, setProduct] = useState({
-    desc:"",
-    categoryId:"",
-    cost:""
+    desc: "",
+    categoryId: "",
+    cost: ""
   });
   const { Id } = useParams();
   useEffect(() => {
@@ -21,16 +25,28 @@ const Viewproduct = () => {
   };
   return (
     <div className="container py-4">
-      <Link className="btn btn-primary" to="/product">
-        back to Product
+      <div className="text-left">
+        <Link className="btn" to="/product">
+          <FontAwesomeIcon icon={faHandPointLeft} /> Back to product
       </Link>
-      <h1 className="display-4">Product Id: {Id}</h1>
-      <hr />
-      <ul className="list-group w-50">
-        <li className="list-group-item">Desc {product.desc}</li>
-        <li className="list-group-item">Categoy Name: {product.categoryId}</li>
-        <li className="list-group-item">Cost {product.cost}</li>
-      </ul>
+      </div>
+      <div class="border row">
+        <div class="border font-weight-bold col"><h3>Product Id: {Id}</h3></div>
+
+      </div>
+      <div class="border row">
+        <div class="border font-weight-bold col-4">Product Description</div>
+        <div class="border col text-left">{product.desc}</div>
+      </div>
+      <div class="border row">
+        <div class="border font-weight-bold col-4">Product Categoy Id</div>
+        <div class="border col text-left">{product.categoryId}</div>
+      </div>
+      <div class="border row">
+        <div class="border font-weight-bold col-4">Cost</div>
+        <div class="border col text-left">{product.cost}</div>
+      </div>
+
     </div>
   );
 };

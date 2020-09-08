@@ -19,14 +19,25 @@ const Editproduct = () => {
     loadProduct();
   }, []);
 
+  
   const { desc, categoryId, cost } = product;
+
+
+  var idSelect =categoryId;
+ 
   const onInputChange = e => {
-    console.log("start");
+    /*console.log("start");
     console.log(e.target.value);
     console.log(e.target.type);
     console.log(e.target.name);
-    console.log("end");
+    console.log("end"); */
 
+    if(e.target.type==="select-one")
+    {
+      idSelect=e.target.value;
+      console.log("select-oneIf");
+      console.log(idSelect);
+    }
 
     SetProduct({ ...product, [e.target.name]: e.target.type === 'text' ? e.target.value : parseInt(e.target.value) })
     console.log("onchange");
@@ -44,7 +55,6 @@ const Editproduct = () => {
   const loadProduct = async () => {
     const result = await axios.get(`http://localhost:5000/product/${Id}`);
     console.log('productedit');
-    console.log(result.data);
     SetProduct(result.data);
   }
 
@@ -66,7 +76,7 @@ const Editproduct = () => {
 
     <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Update Product</h2>
+      <h3 className="text-left mb-4">Edit Product</h3>
         <form onSubmit={e => onSubmit(e)}>
 
           <div className="form-group">
@@ -81,9 +91,9 @@ const Editproduct = () => {
             />
           </div>
           <div class="form-group">
-            <select class="form-control" name="categoryId" onChange={e => onInputChange(e)}>
-              {category.map((item, index) => (
-                <option value={item.categoryId}>{item.categoryName}</option>
+            <select class="form-control" name="categoryId"  value={idSelect} onChange={e => onInputChange(e)}>
+              {category.map((item, index) => (  
+                <option value={item.categoryId} >{item.categoryName}</option>
 
               ))}
             </select>

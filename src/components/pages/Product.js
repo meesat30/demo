@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Product = () => {
 
@@ -20,40 +21,44 @@ const Product = () => {
     }
 
     const deleteProduct = async id => {
+        console.log("delete product");
+        console.log(id);
         await axios.delete(`http://localhost:5000/product/${id}`);
         loadProduct();
     }
 
     return (
         <div className="container">
-            <h1>Product Page</h1>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Cost</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {product.map((item, index) => (
+            <div className="py-4">
+                <h3 className="text-left mb-4">Product</h3>
+                <table class="table">
+                    <thead class="thead-dark">
                         <tr>
-
-                            <th scope="row">{item.productid}</th>
-                            <td>{item.desc}</td>
-                            <td>{item.productCategory.categoryName}</td>
-                            <td>{item.cost}</td>
-                            <td>
-                                <Link className="btn btn-primary mr-2" exact to={`/auth/viewproduct/${item.productid}`}>View</Link>
-                                <Link className="btn btn-outline-primary mr-2" exact to={`/auth/editproduct/${item.productid}`} >Edit</Link>
-                                <Link className="btn btn-danger mr-2" onClick={() => deleteProduct(item.productid)}>Delete</Link>
-                            </td>
+                            <th scope="col">#</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Cost</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {product.map((item, index) => (
+                            <tr>
+
+                                <th scope="row">{index + 1}</th>
+                                <td>{item.desc}</td>
+                                <td>{item.productCategory.categoryName}</td>
+                                <td>{item.cost}</td>
+                                <td>
+                                    <Link className="btn" exact to={`/auth/viewproduct/${item.productId}`}><FontAwesomeIcon icon={faEye} color="blue" /></Link>
+                                    <Link className="btn" exact to={`/auth/editproduct/${item.productId}`} ><FontAwesomeIcon icon={faEdit} color="orange" /></Link>
+                                    <Link className="btn" onClick={() => deleteProduct(item.productId)}><FontAwesomeIcon icon={faTrash} color="Red" /></Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     )
