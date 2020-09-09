@@ -26,7 +26,7 @@ function App() {
         <CNavbar/>
         <Switch>
         <Route exact path="/" component={Home}/>
-          <Route exactpath="/category" component={Category}/>
+          <Route exact path="/category" component={Category}/>
           <Route exact path="/product" component={Product }/>
           <Route exact path="/auth/add" component={Addcategory}/>
           <Route exact path="/auth/edit/:Id" component={Editcategory}/>
